@@ -21,7 +21,7 @@ class Command(BaseCommand):
             for _row in _data[:50]:
                 _price = _row.get('prices', [{}])[0].get('price', 0.00)
                 _description = _row.get('description', '')
-                if _price > 0.00 and _description:
+                if _price > 0.00 and _description is not None:
                     _instance, _created = Comic.objects.get_or_create(
                         marvel_id=_row.get('id'),
                         defaults={
